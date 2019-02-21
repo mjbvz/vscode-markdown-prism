@@ -91,7 +91,7 @@ module.exports.activate = (context) => {
             const renderer = md.renderer.render.bind(md.renderer);
             md.renderer.render = (...args) => {
                 const themeFile = getThemeFile();
-                return `<link href="${vscode.Uri.file(context.asAbsolutePath(`node_modules/prismjs/themes/${themeFile}`)).with({ scheme: 'vscode-resource' })}" rel="stylesheet" type="text/css" />` + renderer(...args);
+                return `<style>@import url('${vscode.Uri.file(context.asAbsolutePath(`node_modules/prismjs/themes/${themeFile}`)).with({ scheme: 'vscode-resource' })}')</style>` + renderer(...args);
             };
             return md;
         }
