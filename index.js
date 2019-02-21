@@ -75,9 +75,14 @@ module.exports.activate = (context) => {
             md.options.highlight = (code, lang) => {
                 try {
                     const Prism = require('prismjs');
-                    const languageDefinition = getLanguageDefinition(Prism, lang);
-                    if (languageDefinition) {
-                        return Prism.highlight(code, languageDefinition, lang);
+                    const loadLanguages = require('prismjs/components/');
+
+                    const languageId = getLanguageId(lang);
+                    if (languageId) {
+                        loadLanguages([languageId]);
+                        if (Prism.languages[languageId]) {
+                            return Prism.highlight(code, Prism.languages[languageId], lang);
+                        }
                     }
                 } catch {
                     // noop 
@@ -98,16 +103,21 @@ module.exports.activate = (context) => {
     }
 }
 
-function getLanguageDefinition(Prism, lang) {
-    const id = lang.toLowerCase();
+function getLanguageId(inId) {
+    inId = inId.toLowerCase();
+    let id;
     for (const language of languages) {
-        if (Prism.languages[language.name]) {
-            if (id === language.name || language.identifiers.some(langId => id === langId)) {
-                return Prism.languages[language.name];
-            }
+        if (inId === language.name || language.identifiers.some(langId => inId === langId)) {
+            id = language.name;
+            break;
         }
     }
-    return undefined;
+
+    switch (id) {
+        case 'ts': return 'typescript';
+        case 'js': return 'javascript';
+    }
+    return id;
 };
 
 function getThemeFile() {
