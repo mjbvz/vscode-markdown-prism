@@ -7,7 +7,7 @@ Uses [Prism](https://prismjs.com) for code highlighting in VS Code's builtin mar
 # Configuration
 
 ### `markdownPrism.theme`
-The Prism color theme to use in the preview. Valid values:
+The Prism color theme to use in the preview:
 
 - `"tomorrow"` - Default
 - `"prism"`
