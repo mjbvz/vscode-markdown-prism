@@ -59,9 +59,7 @@
   },
   "devDependencies": {
     "@types/node": "^11.9.4",
-    "vscode": "^1.1.29"
+    "@types/vscode": "^1.33"
   },
-  "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  }
+  "scripts": {}
 }
