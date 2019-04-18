@@ -4,6 +4,7 @@
   "displayName": "Markdown Preview Prism Highlighting",
   "description": "Uses Prism for VS Code's built-in markdown preview syntax highlighting",
   "icon": "resources/logo.png",
+  "extensionKind": "ui",
   "keywords": [
     "markdown",
     "highlighting",
